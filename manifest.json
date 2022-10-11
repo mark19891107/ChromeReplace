@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "ChromeReplace",
+    "version": "1.0",
+    "description": "Auto replace chinese to english in dictionary",
+    "icons": {},
+    "content_scripts": [
+        {
+            "js": [
+                "content.js"
+            ],
+            "matches": [
+                "https://ithelp.ithome.com.tw/*"
+            ],
+            "css": [
+                "content.css"
+            ]
+        }
+    ]
+}
