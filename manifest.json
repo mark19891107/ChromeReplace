@@ -4,17 +4,21 @@
     "version": "1.0",
     "description": "Auto replace chinese to english in dictionary",
     "icons": {},
+    "permissions": [
+        "storage"
+    ],
     "content_scripts": [
         {
             "js": [
                 "content.js"
             ],
             "matches": [
-                "https://ithelp.ithome.com.tw/*"
-            ],
-            "css": [
-                "content.css"
+                "https://*/*",
+                "http://*/*"
             ]
         }
-    ]
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    }
 }

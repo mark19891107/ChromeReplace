@@ -1,17 +1,29 @@
-let dict = [
-    {
-        "TW":"技術問答",
-        "EN":"Tech Q&A"
-    },
-    {
-        "TW":"技術文章",
-        "EN":"Tech Article"
-    },
-    {
-        "TW":"最新",
-        "EN":"Newest"
-    }
-]
+const getStorage = (key) => {
+    return new Promise(resolve => {
+        chrome.storage.local.get([key], (res) => resolve(res[key]))
+    })
+}
+const setStorage = (obj) => {
+    chrome.storage.local.set(obj, () => { })
+}
+
+const run = async () => {
+    let urlDict = await getStorage("urlDict")
+    let lang = await getStorage("lang")
+    let dict = await fetch(urlDict).then(x=>x.json())
+    console.log(urlDict)
+    dict.map(x=>{
+        replaceInText(document.body,x.TW,x[lang]||x.TW)
+    })
+    
+    const observer = new MutationObserver(function(mutations_list) {
+        mutations_list.forEach(function(mutation) {
+            console.log(mutation)
+        });
+    });
+    
+    observer.observe(document.querySelector("html"), { subtree: true, childList: true });
+}
 
 function replaceInText(element, pattern, replacement) {
     for (let node of element.childNodes) {
@@ -28,17 +40,4 @@ function replaceInText(element, pattern, replacement) {
     }
 }
 
-window.onload = function(){
-    dict.map(x=>{
-        replaceInText(document.body,x.TW,x.EN)
-    })
-    document.body.style.opacity = 1
-}
-
-const observer = new MutationObserver(function(mutations_list) {
-	mutations_list.forEach(function(mutation) {
-		console.log(mutation)
-	});
-});
-
-observer.observe(document.querySelector("body"), { subtree: true, childList: true });
+run()

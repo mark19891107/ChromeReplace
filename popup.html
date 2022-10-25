@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="width:500px;padding: 2px 8px;">
+        <div class="form-inline">
+            <label>字典檔:</label>
+            <input id="urlDict">
+            <div class="btn" id="saveDict">Save</div>
+        </div>
+        <div class="form-inline">
+            <label>語言:</label>
+            <select id="lang">
+                <option value="EN">EN</option>
+                <option value="TW">TW</option>
+            </select>
+            <div class="btn" id="saveLang">Save</div>
+        </div>
+    </div>
+    <script src="./popup.js"></script>
+
+    <style>
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-inline>input,
+        .form-inline>select {
+            flex: 1;
+            margin: 5px 10px;
+        }
+
+        .form-inline>label {
+            width: 50px;
+            text-align: right;
+        }
+
+        .form-inline>.btn {
+            border: solid 1px black;
+            padding: 2px 5px;
+            background: #dddcdc;
+            cursor: pointer;
+        }
+    </style>
+</body>
+
+</html>
